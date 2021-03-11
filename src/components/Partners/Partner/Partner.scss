@@ -1,0 +1,174 @@
+@import '../../../assets/scss/utils/_module';
+
+.partner {
+    width: 25%;
+    max-width: 25%;
+    @include flex(0,0,25%);
+    padding: 0 12px;
+    margin-top: 24px;
+
+    &:nth-child(even) {
+        padding-top: 48px;
+        .partner__wrap {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+    }
+
+    &:nth-child(odd) {
+        .partner__wrap {
+            background-color: rgba(0, 114, 64, 0.06);
+        }
+    }
+
+    &__wrap {
+        padding: 37px 32px 40px;
+        border-radius: 20px;
+        @extend %safari-bg-clip;
+        overflow: hidden;
+    }
+
+    &__heading {
+        @extend %flex;
+        @extend %align-middle;
+        padding-bottom: 25px;
+    }
+
+    &__name {
+        padding: 0 4px 0 17px;
+        position: relative;
+        @include flex(1,1,auto);
+        @include font(900, 16, 140%, inherit, uppercase);
+        @include fluid-font(1440px, 1600px, 18px, 18px);
+        @include fluid-font(1601px, 1920px, 18px, 20px);
+
+        &::after {
+            content: "";
+            @include center-absolute(vertical);
+            left: 0;
+            width: 3px;
+            height: 86%;
+            border-radius: 30px;
+            background-color: $purple;
+        }
+    }
+
+    &__logo {
+        @include flex(0,0,auto);
+    }
+
+    &__desc {
+        padding-top: 24px;
+        @extend %horizontal-decore;
+
+        &::after {
+            top: -1px;
+        }
+    }
+}
+
+@media (max-width: 1600px) {
+    .partner {
+        text-align: center;
+
+        &__wrap {
+            padding-top: 17px;
+        }
+
+        &__heading {
+            @include flex-flow(column-reverse, nowrap);
+            padding-bottom: 20px;
+        }
+
+        &__name {
+            padding: 15px 0 0 0;
+            line-height: 144%;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &__logo {
+            img {
+                width: 104px;
+            }
+        }
+
+        &__desc {
+            padding-top: 20px;
+        }
+    }
+}
+
+@media (max-width: $media-lg) {
+    .partner {
+        &__wrap {
+            padding: 19px 20px 25px;
+        }
+
+        &__name {
+            line-height: 162%;
+        }
+
+        &__logo {
+            img {
+                max-width: 82px;
+            }
+        }
+
+        &__desc {
+            &::after {
+                left: 15px;
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .partner {
+        width: 50%;
+        max-width: 50%;
+        @include flex(0,0,50%);
+        margin-top: 40px;
+
+        &:nth-child(even) {
+            padding-top: 0;
+        }
+
+        &__wrap {
+            padding: 20px 24px 40px 24px;
+            height: 100%;
+        }
+
+        &__heading {
+            padding-bottom: 15px;
+        }
+
+        &__name {
+            max-width: 85%;
+        }
+
+        &__desc {
+            padding-top: 15px;
+        }
+    }
+}
+
+@media (max-width: $media-sm) {
+    .partner {
+        width: 100%;
+        max-width: 100%;
+        @include flex(0,0,100%);
+        margin-top: 16px;
+        padding: 0;
+
+        &__wrap {
+            padding: 19px 22px 32px 22px;
+        }
+
+        &__name {
+            padding-top: 10px;
+        }
+    }
+}

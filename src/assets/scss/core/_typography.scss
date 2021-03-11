@@ -1,0 +1,57 @@
+
+.h1-font {
+    @include font(900, 26, 133%, inherit, uppercase);
+    @include fluid-font(768px, 1535px, 36px, 46px);
+    @include fluid-font(1536px, 1920px, 46px, 54px);
+}
+
+.h2-font {
+    @include font(800, 20, 1.5, inherit, uppercase);
+    @include fluid-font(768px, 1535px, 30px, 30px);
+    @include fluid-font(1536px, 1920px, 32px, 38px);
+}
+
+.text {
+    @include font(normal, 12, 24px, inherit, 0);
+    @include fluid-font(768px, 1339px, 13px, 13px);
+    @include fluid-font(1440px, 1920px, 14px, 14px);
+}
+
+.text-medium {
+    @include font(500, 11, 18px, inherit, 0);
+    @include fluid-font(768px, 1920px, 14px, 14px);
+}
+
+.desc {
+    @include font(normal, 13, 32px, inherit, 0);
+    @include fluid-font(1366px, 1536px, 16px, 16px);
+    @include fluid-font(1537px, 1920px, 18px, 18px);
+}
+
+.btn-font {
+    @include font(500, 15, 16px, inherit, uppercase);
+    @include fluid-font(768px, 1535px, 16px, 16px);
+    @include fluid-font(1536px, 1920px, 18px, 18px);
+}
+
+@media (max-width: $media-xxl) {
+    .h1-font {
+        line-height: 148%;
+    }
+
+    .desc {
+        line-height: 28px;
+    }
+}
+
+@media (max-width: $media-xl) {
+    .h1-font {
+        line-height: 133%;
+    }
+}
+
+@media (max-width: $media-md) {
+    .desc {
+        line-height: 24px;
+    }
+}

@@ -1,0 +1,43 @@
+@import '../../../assets/scss/utils/_module';
+
+.header-contact {
+    @extend %flex;
+    color: #000;
+    position: relative;
+
+    a {
+        line-height: 30px;
+    }
+
+    &__phone {
+        padding-right: 16px;
+        @extend %flex;
+        @extend %align-middle;
+        opacity: 0.3;
+    }
+    
+    &__link {
+        padding-left: 16px;
+        @extend %flex;
+        @extend %align-middle;
+        position: relative;
+        opacity: 0.3;
+    
+        &::after {
+            content: "";
+            @include center-absolute(vertical);
+            left: -1px;
+            width: 2px;
+            height: 8px;
+            background-color: #000;
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .header__contact {
+        a {
+            line-height: 22px;
+        }
+    }
+}

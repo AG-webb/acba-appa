@@ -1,0 +1,503 @@
+@import '../../assets/scss/utils/_module';
+
+.steps {
+    position: relative;
+    min-height: 100vh;
+    @extend %flex;
+
+    &__nav {
+        padding: calc(4.5vw + 58px) 3.15vw 200px 4.6vw;
+        width: 26.25%;
+        @include flex(0,0,26.25%);
+        background-color: $main-color;
+        background-image: url(../../assets/img/footer-bg-inner.svg);
+        background-size: 100%;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        position: relative;
+
+        .dots-decore {
+            top: 530px;
+            right: 0;
+            z-index: 1;
+        }
+    }
+
+    &__content {
+        padding: 144px 5.05vw 0;
+        width: 73.75%;
+        @include flex(0,0,73.75%);
+        position: relative;
+
+        .dots-decore {
+            top: -22px;
+            left: 5.05vw;
+        }
+    }
+}
+
+.steps-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    @extend %flex;
+    @extend %align-between;
+    padding: 2.25vw 5.21vw 2.25vw 4.7vw;
+
+    .header-contact {
+        &__phone, &__link {
+            opacity: 0.4;
+        }
+    }
+}
+
+.ant-form {
+    font-size: initial;
+    line-height: initial;
+    font-variant: initial;
+    color: initial;
+
+    &__buttons {
+        .ant-form-item-control-input-content {
+            @extend %flex;
+        }
+        
+        button[type=submit] {
+            margin-left: 26px;
+        }
+    }
+
+    // custom checkboxes
+    .ant-checkbox-group {
+        line-height: initial;
+        color: initial;
+        font-size: initial;
+
+        // wrapper
+        .ant-checkbox-wrapper {
+            font-size: initial;
+            margin-right: 0;
+            color: initial;
+            position: relative;
+            padding-left: 38px;
+
+            & > span:nth-child(2) {
+                padding: 0;
+                @include font(normal, 12, 24px, inherit, 0);
+                @include fluid-font(768px, 1339px, 13px, 13px);
+                @include fluid-font(1440px, 1920px, 14px, 14px);
+            }
+        }
+
+        & > .ant-checkbox-wrapper+.ant-checkbox-wrapper {
+            margin-top: 20px;
+        }
+
+        // checkbox wrap
+        .ant-checkbox {
+            position: absolute;
+            left: 0;
+            top: 2px;
+
+            // checkbox
+            &-inner {
+                width: 20px;
+                height: 20px;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 6px;
+                @include transition(all, .4s, ease);
+
+                // checkmark
+                &::after {
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                    background-image: url(../../assets/img/icons/checkmark.svg);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transform: none;
+                    display: block;
+                }
+            }
+
+            // checked
+            &-checked {
+                .ant-checkbox-inner {
+                    background-color: $main-color;
+                    border-color: transparent;
+                }
+
+                &::after {
+                    border-color: $main-color;
+                    border-radius: 6px;
+                }
+            }
+        }
+    }
+}
+
+.ant-row.ant-form-item {
+    font-size: initial;
+    margin-bottom: initial;
+    vertical-align: initial;
+    color: initial;
+    font-variant: initial;
+    position: relative;
+    z-index: 5;
+
+    &+& {
+        margin-top: 36px;
+    }
+
+    .ant-row.ant-form-item {
+        margin-top: 0;
+    }
+
+    .ant-form-item-label  {
+        padding: 0;
+        white-space: initial;
+        overflow: initial;
+        flex-grow: initial;
+        line-height: 1;
+
+        & > label {
+            @include font(normal, 12, 1, $black, 0);
+            @include fluid-font(768px, 1339px, 13px, 13px);
+            @include fluid-font(1440px, 1920px, 14px, 14px);
+            display: initial;
+            align-items: initial;
+    
+            &::before {
+                display: none !important;
+            }
+        }
+    }
+    .ant-form-item-control {
+        margin-top: 11px;
+
+        .ant-form-item-control {
+            margin-top: 0;
+        }
+
+        &-input {
+            min-height: initial;
+        }
+
+        .ant-input {
+            color: initial;
+            font-size: initial;
+            line-height: initial;
+            background-color: initial;
+            border: none;
+
+            &:focus {
+                border-right-width: initial;
+                box-shadow: 0px 6px 25px rgba(109, 86, 186, 0.15);
+            }
+        }
+
+        .ant-input, .ant-select-selector, .ant-picker {
+            width: 100%;
+            box-shadow: 0px 6px 25px rgba(109, 86, 186, 0.15);
+            -webkit-appearance: none;
+            border-radius: 60px;
+            height: 56px;
+            padding: 0 20px;
+
+
+            &::placeholder {
+                color: #B5B5B5;
+                font-weight: 300;
+                opacity: 1; 
+            }
+            
+            &:-ms-input-placeholder {
+                color: #B5B5B5;
+                font-weight: 300;
+            }
+            
+            &::-ms-input-placeholder {
+                color: #B5B5B5;
+                font-weight: 300;
+            }
+        }
+
+        .ant-input, .ant-picker {
+            @include font(500, 14, 24px, inherit, 0);
+            @include fluid-font(1536px, 1920px, 16px, 16px);
+        }
+
+        .ant-select-selector {
+            @include font(500, 11, 24px, inherit, 0);
+            @include fluid-font(768px, 1536px, 13px, 14px);
+        }
+
+        .ant-form-item-explain.ant-form-item-explain-error div {
+            margin-top: 10px;
+            @include font(normal, 12, 1, red, 0);
+            @include fluid-font(768px, 1339px, 13px, 13px);
+            @include fluid-font(1440px, 1920px, 14px, 14px);
+        }
+    }
+}
+
+.ant-row_multiple .ant-form-item-control-input-content {
+    @extend %flex;
+    @extend %align-between;
+
+    .ant-row.ant-form-item {
+        &:nth-child(1) {
+            max-width: 56%;
+            @include flex(0,0,56%);
+
+            .ant-picker {
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+            }
+        }
+        &:nth-child(2) {
+            max-width: 41%;
+            @include flex(0,0,56%);
+
+            .ant-picker {
+                border-top-left-radius: 16px;
+                border-bottom-left-radius: 16px;
+            }
+        }
+    }
+}
+
+.ant-picker {
+    color: initial;
+    font-size: initial;
+    padding: initial;
+    background-color: initial;
+    border: 0;
+    border-radius: initial;
+    line-height: initial;
+
+    input::placeholder {
+        font-weight: normal;
+    }
+    input:-ms-input-placeholder {
+        font-weight: normal;
+    }
+    input::-ms-input-placeholder {
+        font-weight: normal;
+    }
+
+    &-focused {
+        box-shadow: none;
+    }
+
+    &-input > input {
+        color: initial;
+        line-height: initial;
+        @include font(500, 14, 24px, inherit, 0);
+        @include fluid-font(1536px, 1920px, 16px, 16px);
+    }
+
+    .ant-picker-suffix {
+        img {
+            min-width: 24px;
+        }
+    }
+
+    .ant-picker-clear {
+        svg {
+            min-width: 24px;
+        }
+    }
+}
+
+.ant-picker-dropdown {
+    // ******************** DatePiker **************************
+
+    // Today
+    .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+        border-color: $main-color;
+    }
+
+    // selected date
+    .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+        background: $main-color;
+    }
+
+    // Today Button
+    .ant-picker-today-btn {
+        color: $main-color;
+    }
+
+    // ****************  TimePicker *******************
+
+    // Selected Time
+    .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+        background: rgba(25, 169, 138, 0.2);
+    }
+
+    // Time OK Button
+    .ant-btn-primary {
+        background: $main-color;
+        border-color: $main-color;
+        color: #fff;
+    }
+}
+
+
+@media (max-width: $media-xxl) {
+    .steps {
+        &__nav {
+            padding: 122px 32px 240px 32px;
+            width: 344px;
+            @include flex(0,0,344px);
+            background-size: 175%;
+            background-position: -50px bottom;
+
+            .dots-decore {
+                display: none;
+            }
+        }
+
+        &__content {
+            padding: 122px 48px 0;
+            width: auto;
+            @include flex(1,1,auto);
+
+            .dots-decore {
+                top: -14px;
+                left: 48px;
+            }
+        }
+    }
+
+    .steps-header {
+        padding: 32px 48px 32px 32px;
+    }
+}
+
+@media (max-width: $media-xl) {
+    .steps {
+        &__nav {
+            width: 352px;
+            @include flex(0,0,352px);
+        }
+    }
+
+    .steps-header {
+        &__logo {
+            max-width: 43px;
+        }
+    }
+    
+    .ant-row.ant-form-item {
+        &+& {
+            margin-top: 31px;
+        }
+
+        .ant-row.ant-form-item {
+            margin-top: 0;
+        }
+
+        .ant-form-item-control {
+            margin-top: 8px;
+    
+            .ant-input, .ant-select-selector, .ant-picker {
+                height: 48px;
+                padding: 0 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .steps {
+        @include flex-flow(column,nowrap);
+        
+        &__nav {
+            padding: 97px 48px 44px 48px;
+            width: 100%;
+            @include flex(0,0,100%);
+            background-image: none;
+        }
+
+        &__content {
+            padding-top: 0;
+            width: 100%;
+            @include flex(0,0,100%);
+
+            .dots-decore {
+                display: none;
+            }
+        }
+    }
+
+    .steps-header {
+        padding: 24px 48px;
+
+        .header-contact {
+            color: #fff;
+
+            &__phone {
+                opacity: 0.5;
+                padding-right: 9px;
+            }
+            &__link {
+                opacity: 0.5;
+                padding-left: 9px;
+
+                &::after {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $media-sm) {
+    .steps {
+        &__nav {
+            padding: 58.11px 16px 22px;
+        }
+
+        &__content {
+            padding: 0;
+        }
+    }
+
+    .steps-header {
+        padding: 12px 16px;
+
+        &__logo {
+            img {
+                max-width: 30px;
+            }
+        }
+
+        &__nav {
+            padding: 58.11px;
+        }
+    }
+
+    .input-box {
+        &+& {
+            margin-top: 25px;
+        }
+    }
+
+    .ant-form {
+        &__buttons {
+            button[type=submit] {
+                margin-left: 9px;
+            }
+
+            .ant-form-item-control-input-content > * {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    }
+}

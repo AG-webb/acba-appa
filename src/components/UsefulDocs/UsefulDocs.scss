@@ -1,0 +1,75 @@
+@import '../../assets/scss/utils/_module';
+
+.useful-docs {
+    margin-top: 155px;
+    text-align: center;
+    position: relative;
+
+    &__title {
+        @include font(500, 16px, 160%, inherit, uppercase);
+        @include fluid-font(768px, 1535px, 18px, 18px);
+        @include fluid-font(1536px, 1920px, 20px, 20px);
+        letter-spacing: 0.2em;
+    }
+
+    &__list {
+        @extend %flex;
+        @include flex-flow(row, wrap);
+    }
+
+    .dots-decore {
+        &_green {
+            top: -50px;
+            left: 4.8%;
+        }
+        &_orange {
+            top: -140px;
+            right: 4.8%;
+        }
+    }
+}
+
+@media (max-width: $media-lg) {
+    .useful-docs {
+        margin-top: 125px;
+
+        .dots-decore {
+            &_green {
+                left: 0;
+            }
+            &_orange {
+                right: 0;
+                top: -90px;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .useful-docs {
+        margin-top: 110px;
+
+        .dots-decore {
+            &_green {
+                top: -70px;
+            }
+            &_orange {
+                top: -15px;
+            }
+        }   
+    }
+}
+
+@media (max-width: $media-sm) {
+    .useful-docs {
+        margin-top: 80px;
+
+        .dots-decore {
+            display: none;
+        }  
+
+        &__list {
+            margin-top: 20px;
+        }
+    }
+}

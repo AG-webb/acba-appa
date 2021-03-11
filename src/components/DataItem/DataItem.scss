@@ -1,0 +1,55 @@
+@import '../../assets/scss/utils/_module';
+
+.data-item {
+    padding: 21px 0;
+    @extend %horizontal-decore;
+
+    &::after {
+        bottom: -1px;
+    }
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &:last-child {
+        padding-bottom: 0;
+
+        &:after {
+            display: none;
+        }
+    }
+
+    &__wrap {
+        @extend %flex;
+        @extend %align-middle;
+    }
+
+    &__title {
+        @include flex(0,0,50%);
+        @include font(normal, 13, 20px, inherit, 0);
+        @include fluid-font(768px, 1535px, 14px, 14px);
+        padding-right: 25px;
+    }
+
+    &__value {
+        @include flex(0,0,50%);
+        @include font(bold, 14, 20px, inherit, 0);
+        @include fluid-font(768px, 1535px, 16px, 16px);
+    }
+}
+
+@media (max-width: $media-sm) {
+    .data-item {
+        padding: 14px 0;
+
+        &__wrap {
+            @include flex-flow(column, nowrap);
+        }
+
+        &__title {
+            padding-right: 0;
+            margin-bottom: 2px;
+        }
+    }
+}

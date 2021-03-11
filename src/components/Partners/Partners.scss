@@ -1,0 +1,141 @@
+@import '../../assets/scss/utils/_module';
+
+.partners {
+    margin-top: 160px;
+    position: relative;
+
+    .dots-decore {
+        &_orange {
+            top: 0;
+            left: 18%;
+        }
+        &_green {
+            top: 25%;
+            right: 16%;
+        }
+    }
+
+    &__heading {
+        text-align: center;
+    }
+
+    &__list {
+        @extend %flex;
+        @include flex-flow(row, wrap);
+        margin: 31px -12px 0 -12px;
+    }
+
+    .inline-btn {
+        margin-top: 88px;
+    }
+}
+
+
+@media(max-width: $media-xxl) {
+    .partners {
+        margin-top: 128px;
+
+        .dots-decore {
+            &_orange {
+                top: -27px;
+                left: 15%;
+            }
+            &_green {
+                top: 17%;
+                right: 14%;
+            }
+        }
+
+        &__icon {
+            img {
+                max-width: 95px;
+            }
+        }
+
+        &__list {
+            margin-top: 18px;
+        }
+    }
+}
+
+@media (max-width: $media-xl) {
+    .partners {
+        margin-top: 110px;
+
+        .dots-decore {
+            &_green {
+                right: 112px;
+            }
+        }
+
+        &__icon {
+            img {
+                max-width: 87px;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-lg) {
+    .partners {
+        margin-top: 133px;
+
+        .inline-btn {
+            margin-top: 75px;
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .partners {
+        margin-top: 100px;
+
+        .dots-decore {
+            &_orange {
+                top: 0;
+            }
+            &_green {
+                top: 3%;
+                right: 56px;
+            }
+        }
+
+        &__list {
+            margin-top: 0;
+        }
+
+        .inline-btn {
+            margin-top: 48px;
+        }
+    }
+}
+
+@media (max-width: $media-sm) {
+    .partners {
+        margin-top: 48px;
+
+        .dots-decore {
+            &_orange {
+                left: -15px;
+                top: -15px;
+            }
+            &_green {
+                right: -15px;
+            }
+        }
+
+        &__icon {
+            img {
+                max-width: 75px;
+            }
+        }
+
+        &__list {
+            margin: 0;
+        }
+
+        .inline-btn {
+            margin-top: 32px;
+        }
+    }
+}

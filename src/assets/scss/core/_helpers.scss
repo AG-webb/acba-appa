@@ -1,0 +1,101 @@
+.dots-decore {
+    position: absolute;
+    width: 67px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &_orange {
+        background-image: url(../../img/decore/dots-orange.svg);
+    }
+
+    &_green {
+        background-image: url(../../img/decore/dots-green.svg);
+    }
+
+    &_green-dark {
+        background-image: url(../../img/decore/dots-green-dark.svg);
+    }
+}
+
+.inline-btn {
+    @extend %horizontal-decore;
+    @extend %flex;
+    @extend %align-center;
+
+    &::after {
+        left: 0;
+        top: 50%;
+        z-index: -1;
+    }
+
+    &__wrap {
+        padding: 0 30px;
+        background-color: #fff;
+    }
+}
+
+.stroke-text {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 3px;
+    @include font(900, 32, 1, inherit, uppercase);
+    @include fluid-font(768px, 1535px, 42px, 42px);
+    @include fluid-font(1536px, 1920px, 60px, 60px);
+    
+    &_green {
+        -webkit-text-stroke-color: $main-color;
+    }
+    
+    &_purple {
+        -webkit-text-stroke-color: $purple;
+    }
+}
+
+@media (max-width: $media-xl) {
+    .dots-decore {
+        width: 55px;
+        height: 56px;
+    }
+
+    .inline-btn {
+        &__wrap {
+            padding: 0 84px;
+        }
+    }
+}
+
+@media (max-width: $media-lg) {
+    .inline-btn {
+        &__wrap {
+            padding: 0 66px;
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .inline-btn {
+        &__wrap {
+            padding: 0 46px;
+        }
+    }
+}
+
+
+@media (max-width: $media-sm) {
+    .dots-decore {
+        width: 47px;
+        height: 48px;
+    }
+
+    .inline-btn {
+        &::after {
+            display: none;
+        }
+        
+        &__wrap {
+            padding: 0;
+
+        }
+    }
+}

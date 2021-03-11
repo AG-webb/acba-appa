@@ -1,0 +1,118 @@
+
+@import '../../assets/scss/utils/_module';
+
+.header {
+    &__wrapper {
+        @extend %flex;
+        @extend %align-between;
+    }
+
+    &__logo {
+        padding: 50px 0;
+        @extend %flex;
+        @extend %align-middle;
+
+        a {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    .header-contact {
+        padding: 50px 0;
+
+        &::after {
+            content: "";
+            @include center-absolute(horizontal);
+            top: 0;
+            width: 520px;
+            height: 442px;
+            background-color: $black;
+            opacity: 0.06;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: -1;
+        }
+    }
+}
+
+@media (max-width: $media-xl) {
+    .header {
+        &__logo {
+            max-width: 455px;
+        }
+
+        .header-contact {
+            &::after {
+                width: 438px;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-lg) {
+    .header {
+        &__logo {
+            padding: 34px 0;
+        }
+
+        .header-contact {
+            padding: 34px 0;
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .header {
+        overflow: hidden;
+
+        &__logo {
+            max-width: 424px;
+            padding: 31px 0;
+        }
+
+        .header-contact {
+            @include flex-flow(column-reverse, nowrap);
+            padding: 31px 0;
+
+            &::after {
+                left: initial;
+                right: -48px;
+                transform: none;
+                width: 184px;
+                height: 200px;
+                border-radius: 0;
+            }
+
+            a {
+                margin-left: auto;
+            }
+            
+            &__phone {
+                padding: 0;
+                margin-top: 4px;
+            }
+    
+            &__link {
+                padding: 0;
+    
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width: $media-sm) {
+    .header {
+        &__logo {
+            padding: 18px 0;
+        }
+
+        .header-contact {
+            display: none;
+        }
+    }
+}

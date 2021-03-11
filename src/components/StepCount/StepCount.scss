@@ -1,0 +1,66 @@
+@import '../../assets/scss/utils/_module';
+
+.step-count {
+    &__title {
+        padding-left: 16px;
+        margin-right: 26px;
+        position: relative;
+        @include font(900, 18, 1, inherit, uppercase);
+        @include fluid-font(1536px, 1920px, 20px, 20px);
+        
+        &::after {
+            content: "";
+            @include center-absolute(vertical);
+            left: 0;
+            width: 3px;
+            height: 16px;
+            background-color: $purple;
+            border-radius: 30px;
+        }
+    }
+
+    &__number {
+        position: relative;
+        display: inline-block;
+
+        & > span {
+            position: absolute;
+            top: 20px;
+            left: -13px;
+            width: 67px;
+            z-index: -1;
+            @include transform(rotate(-90deg));
+        }
+    }
+}
+
+@media (max-width: $media-xl) {
+    .step-count {
+        &__title {
+            margin-right: 15px;
+        }
+
+        &__number {
+            & > span {
+                width: 52px;
+                top: 11px;
+                left: -6px;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-sm) {
+    .step-count {
+        &__title {
+            padding-left: 13px;
+        }
+
+        &__number {
+            & > span {
+                width: 40px;
+                top: 8px;
+            }
+        }
+    }
+}

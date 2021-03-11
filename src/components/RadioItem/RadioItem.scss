@@ -1,0 +1,190 @@
+@import '../../assets/scss/utils/_module';
+
+.ant-form {
+    // custom radio
+    .ant-radio-group {
+        width: 100%;
+
+        // wrapper
+        .ant-radio-wrapper {
+            @extend %flex;
+            @extend %align-middle;
+            padding: 0 32px 0 16px;
+            min-height: 56px;
+            margin-top: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 60px;
+            @include transition(all, .4s, ease);
+            font-size: initial;
+            color: initial;
+            margin-right: 0;
+            white-space: initial;
+            line-height: initial;
+
+            // radio wrap
+            .ant-radio {
+                @include flex(0,0,auto);
+
+                &:hover .ant-radio-inner {
+                    border-color: $main-color;
+                }
+
+                // checked
+                &-checked {
+                    .ant-radio-inner {
+                        border-color: rgba(0, 0, 0, 0.1);
+
+                        &::after {
+                            @include transform(translate(-50%, -50%) scale(1));
+                        }
+                    }
+
+                    &::after {
+                        border: 1px solid rgba(0, 0, 0, 0.1);
+                    }
+                }
+
+                // focus
+                &-input:focus+.ant-radio-inner {
+                    box-shadow: none;
+                    -webkit-box-shadow: none;
+                }
+
+                // radio
+                &-inner {
+                    width: 24px;
+                    height: 24px;
+
+                    // radio checked circle
+                    &::after {
+                        background-color: $main-color;
+                        width: 15px;
+                        height: 15px;
+                        top: 50%;
+                        left: 50%;
+                        @include transform(translate(-50%, -50%) scale(0));
+                    }
+                }
+            }
+
+            & > span:nth-child(2) {
+                @include flex(1,1,auto);
+                padding: 0;
+            }
+
+            // radio content
+            .radio-item {
+                @extend %flex;
+                @extend %align-middle;
+
+                &__logo {
+                    @include flex(0,0,130px);
+                    max-width: 130px;
+                    text-align: center;
+                    position: relative;
+                    padding: 0 5px;
+
+                    &::after {
+                        content: "";
+                        @include center-absolute(vertical);
+                        right: 0;
+                        width: 1px;
+                        height: 8px;
+                        background-color: #C4C4C4;
+                    }
+                }
+
+                &__name {
+                    @include flex(1,1,auto);
+                    padding: 0 22px;
+                    line-height: 20px;
+                }
+
+                &__price {
+                    @include flex(0,0,auto);
+                    @include font(bold, 15, 1, inherit, 0);
+                    @include fluid-font(768px, 1536px, 18px, 18px);
+                }
+            }
+
+            // checked
+            &.ant-radio-wrapper-checked {
+                border-color: transparent;
+                box-shadow: 0px 6px 25px rgba(109, 86, 186, 0.15);
+
+                .radio-item {
+                    &__price {
+                        @include font(bold, 16, 1, $main-color, 0);
+                        @include fluid-font(768px, 1536px, 22px, 22px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $media-xl) {
+    .ant-form {
+        .ant-radio-group .ant-radio-wrapper {
+            min-height: 48px;
+        }
+    }
+}   
+
+@media (max-width: 1280px) {
+    .ant-form {
+        .ant-radio-group .ant-radio-wrapper {
+            .radio-item__logo {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-md) {
+    .ant-form {
+        .ant-radio-group .ant-radio-wrapper {
+            .radio-item__logo {
+                display: block;
+            }
+        }
+    }
+}
+
+@media (max-width: $media-sm) {
+    .ant-form {
+        .ant-radio-group .ant-radio-wrapper {
+            padding: 12px 16px;
+            min-height: initial;
+            margin-top: 8px;
+
+            .radio-item {
+                @include flex-flow(column, nowrap);
+                @include align-items(flex-start);
+                padding: 0 100px 0 11px;
+
+                &__logo {
+                    @include flex(1,1,auto);
+                    max-width: initial;
+                    text-align: left;
+                    padding: 0;
+
+                    &::after {
+                        display: none;
+                    }
+                }
+
+                &__name {
+                    padding: 0;
+                    width: 100%;
+                    line-height: 16px;
+                }
+
+                &__price {
+                    @include center-absolute(vertical);
+                    right: 16px;
+                }
+            }
+        }
+    }
+}
