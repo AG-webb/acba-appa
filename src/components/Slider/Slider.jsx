@@ -60,7 +60,7 @@ const Slider = () => {
                                 clickable: true,
                                 el: '.slider-control__pagination',
                             }}
-                            >
+                        >
                             <SwiperSlide>
                                 <img src={sliderImg} alt="slider picture"/>
                             </SwiperSlide>
@@ -109,7 +109,7 @@ const Slider = () => {
                         }}
                         >
                             
-                        {generateSlides()}
+                        { generateSlides() }
 
                     </Swiper>
 
