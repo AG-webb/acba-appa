@@ -7,10 +7,25 @@ import HeaderContact from '../../components/Hedaer/HeaderContact/HeaderContact';
 import { NavLink, Route } from 'react-router-dom';
 import Summary from '../Summary/Summary';
 import StepsNav from './StepsNav/StepsNav';
+import { pageReadyToggle } from '../../redux/steps-reducer';
+import Loader from '../../components/Loader/Loader';
 import './Steps.scss';
+import { connect } from 'react-redux';
+
 
 class Steps extends React.Component {
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.props.pageReadyToggle(true);
+        }, 1000);
+    }
+
     render() {
+        if(!this.props.isReady) {
+            return <Loader />
+        }
+        
         return (
             <div className="steps">
                 <div className="steps-header">
@@ -37,4 +52,12 @@ class Steps extends React.Component {
     }
 }
 
-export default Steps;
+let mapStateToProps = (state) => {
+    return {
+        isReady: state.stepsPage.isReady,
+    }
+}
+
+export default connect(mapStateToProps, {
+    pageReadyToggle,
+})(Steps);

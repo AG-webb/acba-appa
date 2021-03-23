@@ -1,0 +1,46 @@
+@import '../../assets/scss/utils/_module';
+
+.loader {
+    @extend %flex;
+    @extend %align-center;
+    @extend %align-middle;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    &__wrap {
+        position: relative;
+        max-width: 600px;
+    }
+
+    &__img {
+        margin-left: -36%;
+    }
+
+    &__text {
+        display: inline-block;
+        @include center-absolute(vertical);
+        right: 0;
+        @include font(bold, 25, 72px, inherit, 0);
+        @include fluid-font(768px, 1535px, 40px, 40px);
+    }
+}
+
+@media (max-width: $media-sm) {
+    .loader {
+        &__img {
+            margin: 0 -25%;
+        }
+
+        &__text {
+            transform: none;
+            right: 50%;
+            top: initial;
+            bottom: 50px;
+            margin-right: -60px;
+        }
+    }
+}

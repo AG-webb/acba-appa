@@ -17,25 +17,20 @@ class CompaniesForm extends React.Component {
         };
     }
 
-    onRadioChange = e => {
+    onRadioChange = (e) => {
         // console.log('radio checked', e.target.value);
 
         this.setState({
             value: e.target.value
         });
-    };
+    }
 
     onFinish = (values) => {
-        // console.log('Success:', values);
-    };
-    
-    onFinishFailed = (errorInfo) => {
-        // console.log('Failed:', errorInfo);
-    };
-
-    onCheckboxChange(e) {
-        // console.log(`checked = ${e.target.checked}`);
+        this.props.setCurrentStepIndex(4);
+        console.log(values);
     }
+    onFinishFailed = (errorInfo) => {}
+    onCheckboxChange = (e) => {}
 
     render() {
         const { value } = this.state;

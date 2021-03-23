@@ -1,37 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './StepsNav.scss';
 import StepsNavItem from './StepsNavItem';
 
 class StepsNav extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentStepIndex: 3,
-        };
-    }
 
     render() {
-        let steps = [
-            {
-                title: "Ավտոմեքենայի և ապահովադրի որոնում",
-            },
-            {
-                title: "Տվյալների լրացում",
-            },
-            {
-                title: "Տվյալների ստուգում և վճարում",
-            },
-            {
-                title: "Ամփոփում",
-            },
-        ];
-
         return (
             <div className="steps-nav">
-                {steps.map((step, index) => {
-                    if(this.state.currentStepIndex == index + 1) {
+                {this.props.steps.map((step, index) => {
+                    if(this.props.currentStepIndex == index + 1) {
                         return  <StepsNavItem key={index} title={step.title} index={index + 1} status={"active"}/>
-                    } else if (this.state.currentStepIndex > index + 1) {
+                    } else if (this.props.currentStepIndex > index + 1) {
                         return  <StepsNavItem key={index} title={step.title} index={index + 1} status={"checked"}/>
                     } else {
                         return  <StepsNavItem key={index} title={step.title} index={index + 1}/>
@@ -42,4 +22,11 @@ class StepsNav extends React.Component {
     }
 }
 
-export default StepsNav;
+let mapStateToProps = (state) => {
+    return {
+        currentStepIndex: state.stepsPage.currentStepIndex,
+        steps: state.stepsPage.steps,
+    }
+}
+
+export default connect(mapStateToProps, {})(StepsNav);
