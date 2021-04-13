@@ -5,6 +5,8 @@ import successIcon from '../../assets/img/icons/success.svg';
 import Button from '../../components/Button/Button';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withFetchLoader } from '../../hoc/withFetchLoader';
 
 class Summary extends React.Component {
     render() {
@@ -60,6 +62,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-
-})(Summary);
+export default compose(
+    connect(mapStateToProps),
+    withFetchLoader,
+)(Summary);

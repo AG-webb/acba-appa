@@ -5,16 +5,21 @@ import StepCount from '../../components/StepCount/StepCount';
 import CompaniesForm from './CompaniesForm';
 import StepsGrid from '../../components/StepsGrid/StepsGrid';
 import { connect } from 'react-redux';
-import { setDateAndTime, setValue } from '../../redux/owners-reducer';
+import { setDateAndTime, setValue } from '../../reducers/owner-reducer';
 import { Redirect } from 'react-router';
-import { setCurrentStepIndex } from '../../redux/steps-reducer';
+import { isFetchingToggle, setCurrentStepIndex } from '../../reducers/steps-reducer';
+import { compose } from 'redux';
+import { withFetchLoader } from '../../hoc/withFetchLoader';
 
 class Payment extends React.Component {
-    render() {
-        let owner = {
-            name: "Զառա Պետրոսյան",
-        }
+    getCarOwnerName() {
+        let owner;
+        this.props.carInfo.map(info => info.name == "owner" ? owner = info.value.split(" ") : null)
+        owner = owner[0] + " " + owner[1];
+        return owner;
+    }
 
+    render() {
         switch (this.props.currentStepIndex) {
             case 1: 
                 return <Redirect to={"/"} />;
@@ -29,12 +34,12 @@ class Payment extends React.Component {
                             <>
                                 <StepCount count={ 3 }/>
                                 <div className="text">
-                                    ՀԱՐԳԵԼԻ <span>{ owner.name }</span>՝ Խնդրում ենք ստուգել
+                                    Հարգելի <span>{ this.getCarOwnerName() }</span>՝ Խնդրում ենք ստուգել
                                     ստորև տեղեկատվությունը և անցնել վճարման
                                 </div>
                             </>
                         }
-                        topContent={ <CarDataComponent owner={this.props.owner} /> }  
+                        topContent={ <CarDataComponent carInfo={this.props.carInfo} /> }  
                         desc={
                             <div className="text">
                                 Խնդրում ենք ընտրել Ապահովագրական ընկերությունը `
@@ -43,7 +48,11 @@ class Payment extends React.Component {
                         bottomContent={
                             <>
                                 <span className="text">Գումարը նշված է 5%-ով նվազեցված</span>
-                                <CompaniesForm setCurrentStepIndex={this.props.setCurrentStepIndex}/>
+                                <CompaniesForm
+                                    setCurrentStepIndex={this.props.setCurrentStepIndex}
+                                    currentStepIndex={this.props.currentStepIndex}
+                                    isFetchingToggle={this.props.isFetchingToggle}
+                                />
                             </>
                         }
                     />
@@ -56,7 +65,7 @@ let CarDataComponent = (props) => {
 
     return (
         <div className="data-items">
-            { props.owner.map( (data, index) => {
+            { props.carInfo.map( (data, index) => {
                 return data.value && <DataItem key={index} title={data.title} value={data.value}/> 
             }) }
         </div>
@@ -66,13 +75,17 @@ let CarDataComponent = (props) => {
 
 let mapStateToProps = (state) => {      
     return {
-        owner: state.owner.carInfo,
+        carInfo: state.owner.carInfo,
         currentStepIndex: state.stepsPage.currentStepIndex,
     }
 }
 
-export default  connect(mapStateToProps, {
-    setValue,
-    setDateAndTime,
-    setCurrentStepIndex,
-})(Payment);
+export default compose(
+    connect(mapStateToProps, {
+        setValue,
+        setDateAndTime,
+        setCurrentStepIndex,
+        isFetchingToggle,
+    }), 
+    withFetchLoader,
+)(Payment);

@@ -5,8 +5,9 @@ import { compose } from 'redux';
 import DataItem from '../../components/DataItem/DataItem';
 import StepCount from '../../components/StepCount/StepCount';
 import StepsGrid from '../../components/StepsGrid/StepsGrid';
-import { setDateAndTime, setValue } from '../../redux/owners-reducer';
-import { setCurrentStepIndex } from '../../redux/steps-reducer';
+import { withFetchLoader } from '../../hoc/withFetchLoader';
+import { setDateAndTime, setValue } from '../../reducers/owner-reducer';
+import { isFetchingToggle, setCurrentStepIndex } from '../../reducers/steps-reducer';
 import './DataFilling.scss';
 import DataForm from './DataForm';
 
@@ -64,11 +65,13 @@ let mapStateToProps = (state) => {
     }
 }
 
+
 export default compose(
     connect(mapStateToProps, {
         setValue,
         setDateAndTime,
         setCurrentStepIndex,
+        isFetchingToggle,
     }),
-    withRouter,
+    withFetchLoader,
 )(DataFilling);

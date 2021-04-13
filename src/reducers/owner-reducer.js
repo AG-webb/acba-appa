@@ -4,6 +4,11 @@ const SET_DATE_AND_TIME = "SET_DATE_AND_TIME";
 let initialState = {
     carInfo: [
         {
+            name: "owner",
+            title: "ԱԱՀ",
+            value: "Պետրոսյան Զառա Արմենի",
+        },
+        {
             name: "passportNumber",
             title: "Անձը հաստատող փաստաթուղթ",
             value: null,

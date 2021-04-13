@@ -23,13 +23,8 @@ let DataForm = (props) => {
         props.setValue("phoneNumber", values.phoneNumber);
         props.setDateAndTime("startDate", startDate, startTime);
         props.setValue("endDate", endDate);
+        props.isFetchingToggle(true);
     };
-    
-    let onFinishFailed = (errorInfo) => {};
-    let handleChange = (value) => {}
-    let startDateOnChange = (date, dateString) => {}
-    let endDateOnChange = (date, dateString) => {}
-    let timeOnChange = (time, timeString) => {}
     
     return (
         <Form
@@ -37,16 +32,15 @@ let DataForm = (props) => {
             layout="vertical"
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             className="data-form"
         >
             <Form.Item
                 label="Ավտոմեքենայի շահագործման նպատակ"
                 name="usagePurpose"
+                rules={[{ required: true, message: 'Please select usage ourpose!' }]}
             >
                 <Select
                     style={{ width: "100%" }}
-                    onChange={handleChange}
                     dropdownClassName={"custom-select__dropdown"}
                     placeholder={"Օրինակ՝ Անձնական նպատակով"}
                     suffixIcon={(<img src={arrowDown} alt="arrow down"/>)}
@@ -75,17 +69,21 @@ let DataForm = (props) => {
                 label="ՍԿիզբ"
                 className="ant-row_multiple"
             >
-                <Form.Item name="startDate">
+                <Form.Item
+                    name="startDate"
+                    rules={[{ required: true, message: 'Please select date!' }]}        
+                >
                     <DatePicker
-                        onChange={startDateOnChange}
                         suffixIcon={(<img src={dateIcon} alt="date"/>)}
                         format={'DD/MM/YYYY'}
                         placeholder={"Ընտրել օրը"}
                     />
                 </Form.Item>
-                <Form.Item name="startTime">    
+                <Form.Item
+                    name="startTime"
+                    rules={[{ required: true, message: 'Please select time!' }]}    
+                >    
                     <TimePicker
-                        onChange={timeOnChange}
                         suffixIcon={(<img src={timeIcon} alt="date"/>)}
                         initialValues={moment('00:00', 'HH:mm')}
                         format={'HH:mm'}
@@ -96,16 +94,21 @@ let DataForm = (props) => {
             <Form.Item
                 label="Ավարտ"
                 name="endDate"
+                rules={[{ required: true, message: 'Please select date!' }]}    
             >
                 <DatePicker
-                    onChange={endDateOnChange}
                     suffixIcon={(<img src={dateIcon} alt='date'/>)}
                     format={'DD/MM/YYYY'}
                     placeholder={"Ընտրել օրը"}
                 />
             </Form.Item>
             <Form.Item className="ant-form__buttons">
-                <ButtonCustom text={"ՆԱԽՈՐԴ"} icon={arrowLeft} bg={"white"} link={"/steps"}/>
+                <ButtonCustom
+                    callback={ () => props.setCurrentStepIndex(props.currentStepIndex - 1)}
+                    text={"ՆԱԽՈՐԴ"}
+                    icon={arrowLeft}
+                    bg={"white"}
+                />
                 <Button className="btn btn_green" type="primary" htmlType="submit">
                     <span className="btn-font">ՀԱՋՈՐԴ</span>
                     <img src={arrowRight} alt="iconSearch"/>

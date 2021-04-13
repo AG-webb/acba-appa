@@ -4,10 +4,8 @@ import { Form, Checkbox, Button, Radio } from 'antd';
 import ButtonCustom from '../../components/Button/Button';
 import checkIcon from '../../assets/img/icons/check-white.svg';
 import arrowLeft from '../../assets/img/icons/arrow-left_green.svg';
-import rgsLogo from '../../assets/img/companies/rgs.png';
-import ingoLogo from '../../assets/img/companies/ingo.png';
-import nairiLogo from '../../assets/img/companies/nairi.png';
 import RadioItem from '../../components/RadioItem/RadioItem';
+import { connect } from 'react-redux';
 
 class CompaniesForm extends React.Component {
     constructor(props) {
@@ -27,7 +25,7 @@ class CompaniesForm extends React.Component {
 
     onFinish = (values) => {
         this.props.setCurrentStepIndex(4);
-        console.log(values);
+        this.props.isFetchingToggle(true);
     }
     onFinishFailed = (errorInfo) => {}
     onCheckboxChange = (e) => {}
@@ -45,29 +43,6 @@ class CompaniesForm extends React.Component {
             անդամ չհանդիսացող բանկի կողմից թողարկված քարտի
             միջոցով ապահովագրության դիմաց վճարում չի ընդունվում`,
         ];
-        
-        let companies = [
-            {
-                logo: rgsLogo,
-                name: "Ռոսգոսստրախ-Արմենիա",
-                price: "14 500 ֏",
-            },
-            {
-                logo: ingoLogo,
-                name: "ԻՆԳՈ ԱՐՄԵՆԻԱ",
-                price: "12 400 ֏",
-            },
-            {
-                logo: nairiLogo,
-                name: "ՆԱԻՐԻ Ինշուրանս",
-                price: "13 700 ֏",
-            },
-            {
-                logo: rgsLogo,
-                name: "Ռոսգոսստրախ-Արմենիա",
-                price: "14 000 ֏",
-            },
-        ];
 
         return (
             <Form
@@ -80,14 +55,23 @@ class CompaniesForm extends React.Component {
             >
                 <Radio.Group onChange={this.onRadioChange} value={value} name={"companies"}>
                     {
-                        companies.map((company, index)=> {
-                            return  <RadioItem value={index + 1} key={index} logo={company.logo} name={company.name} price={company.price}/>
+                        this.props.companies.map((company, index)=> {
+                            return  <RadioItem value={index + 1} key={index} logo={company.logoSm} name={company.name} price={company.price}/>
                         })
                     }
                 </Radio.Group>
-                <Checkbox.Group className="companies-form__privacy" options={checkboxOptions} name={"privacy"} onChange={this.onCheckboxChange} />
+                <Form.Item
+                    rules={[{ required: true, message: 'Please check!' }]}
+                >
+                    <Checkbox.Group className="companies-form__privacy" options={checkboxOptions} name={"privacy"} onChange={this.onCheckboxChange} />
+                </Form.Item>
                 <Form.Item className="ant-form__buttons">
-                    <ButtonCustom text={"ՆԱԽՈՐԴ"} icon={arrowLeft} bg={"white"} link={"/steps/data-filling"}/>
+                    <ButtonCustom
+                        callback={ () => this.props.setCurrentStepIndex(this.props.currentStepIndex - 1)}
+                        text={"ՆԱԽՈՐԴ"}
+                        icon={arrowLeft}
+                        bg={"white"}
+                    />
                     <Button className="btn btn_green" type="primary" htmlType="submit">
                         <span className="btn-font">վճարել</span>
                         <img src={checkIcon} alt="iconSearch"/>
@@ -98,4 +82,10 @@ class CompaniesForm extends React.Component {
     }
 }
 
-export default CompaniesForm;
+let mapStateToProps = (state) => {
+    return {    
+        companies: state.companies.companies,
+    }
+}
+
+export default connect(mapStateToProps, {})(CompaniesForm);

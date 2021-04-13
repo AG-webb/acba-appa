@@ -1,10 +1,12 @@
 import { createStore, combineReducers } from "redux";
-import ownerReducer from "./owners-reducer";
-import stepsReducer from "./steps-reducer";
+import companiesReducer from "../reducers/companies-reducer";
+import ownerReducer from "../reducers/owner-reducer";
+import stepsReducer from "../reducers/steps-reducer";
 
 let reducers = combineReducers({
     stepsPage: stepsReducer,
     owner: ownerReducer,
+    companies: companiesReducer,
 });
 
 let store = createStore(reducers);

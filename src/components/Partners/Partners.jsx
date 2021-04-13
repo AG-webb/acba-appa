@@ -2,39 +2,13 @@ import React from 'react';
 import './Partners.scss';
 import partnersIcon from '../../assets/img/icons/partners.svg';
 import Partner from './Partner/Partner';
-import partnerLogo1 from '../../assets/img/partners/sil.png';
-import partnerLogo2 from '../../assets/img/partners/nairi.png';
-import partnerLogo3 from '../../assets/img/partners/ingo.png';
-import partnerLogo4 from '../../assets/img/partners/rosgosstrax.png';
 import pen from '../../assets/img/icons/pen.svg';
 import Button from '../Button/Button';
+import { connect } from 'react-redux';
 
 class Partners extends React.Component {
 
     render() {
-        let partners = [
-            {
-                name: "ՍԻԼ ԻՆՇՈՒՐԱՆՍ",
-                logo: partnerLogo1,
-                desc: "Համակարգը հնարավորություն է տալիս կատարել ԱՊՊԱ-ին առնչվող բոլոր գործողությունները միասնակ",
-            },
-            {
-                name: "ՆԱԻՐԻ ԻՆՇՈՒՐԱՆՍ",
-                logo: partnerLogo2,
-                desc: "Համակարգը հնարավորություն է տալիս կատարել ԱՊՊԱ-ին առնչվող բոլոր գործողությունները միասնակ",
-            },
-            {
-                name: "ԻՆԳՈ ԱՐՄԵՆԻԱ",
-                logo: partnerLogo3,
-                desc: "Համակարգը հնարավորություն է տալիս կատարել ԱՊՊԱ-ին առնչվող բոլոր գործողությունները միասնակ",
-            },
-            {
-                name: "Ռոսգոսստրախ-Արմենիա",
-                logo: partnerLogo4,
-                desc: "Համակարգը հնարավորություն է տալիս կատարել ԱՊՊԱ-ին առնչվող բոլոր գործողությունները միասնակ",
-            }
-        ];
-
         return (
             <div className="partners">
                 <div className="dots-decore dots-decore_orange"></div>
@@ -51,8 +25,8 @@ class Partners extends React.Component {
                         </div>
                         <div className="partners__list">
                             {
-                                partners.map((partner, index) => {
-                                    return <Partner key={index} name={partner.name} logo={partner.logo} desc={partner.desc}/>
+                                this.props.companies.map((company, index) => {
+                                    return <Partner key={index} name={company.name} logo={company.logo} desc={company.desc}/>
                                 })
                             }
                         </div>
@@ -68,4 +42,10 @@ class Partners extends React.Component {
     }
 }
 
-export default Partners;
+let mapStateToProps = (state) => {
+    return {
+        companies: state.companies.companies,
+    }
+}
+
+export default connect(mapStateToProps, {})(Partners);

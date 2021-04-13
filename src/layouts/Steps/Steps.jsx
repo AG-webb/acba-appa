@@ -7,7 +7,7 @@ import HeaderContact from '../../components/Hedaer/HeaderContact/HeaderContact';
 import { NavLink, Route } from 'react-router-dom';
 import Summary from '../Summary/Summary';
 import StepsNav from './StepsNav/StepsNav';
-import { pageReadyToggle } from '../../redux/steps-reducer';
+import { pageReadyToggle } from '../../reducers/steps-reducer';
 import Loader from '../../components/Loader/Loader';
 import './Steps.scss';
 import { connect } from 'react-redux';
